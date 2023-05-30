@@ -1,0 +1,21 @@
+.container{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.paginator{
+    margin-top: 10px;
+}
+
+.mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  mat-icon{
+    cursor: pointer;
+  }
+
+  .icon{
+    transform: scale(0.9);
+  }

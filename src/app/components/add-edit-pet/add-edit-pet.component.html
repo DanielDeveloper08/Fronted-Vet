@@ -1,0 +1,52 @@
+<div>
+  <h1>Agregar mascota</h1>
+  <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+  <mat-card class="container mt-2 pt-3">
+    <pre>Datos de la mascota</pre>
+    <form [formGroup]="form" (submit)="submitData()">
+      <mat-grid-list cols="2" rowHeight="85px">
+        <mat-grid-tile [colspan]="2">
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput type="text" autocomplete="false" formControlName="name">
+            <mat-error>Campo requerido!</mat-error>
+          </mat-form-field>
+          
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <mat-label>Edad</mat-label>
+            <input matInput type="number" autocomplete="false" formControlName="age">
+            <mat-error>Campo requerido!</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <mat-label>Raza</mat-label>
+            <input matInput type="text" autocomplete="false" formControlName="breek">
+            <mat-error>Campo requerido!</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <mat-label>Color</mat-label>
+            <input matInput type="text" autocomplete="false" formControlName="color">
+            <mat-error>Campo requerido!</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <mat-label>Peso</mat-label>
+            <input matInput type="number" autocomplete="false" formControlName="weight">
+            <mat-error>Campo requerido!</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <div class="d-flex justify-content-end">
+        <button type="submit" [disabled]="form.invalid" mat-raised-button color="primary" class="mb-3 me-3">Guardar</button>
+        <button mat-raised-button class="mb-3" (click)="goToList()">Cancelar</button>
+      </div>
+    </form>
+  </mat-card>
+
+</div>
