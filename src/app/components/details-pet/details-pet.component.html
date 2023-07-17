@@ -1,9 +1,11 @@
-<div class="m-3">
-  <h2>Datos de {{pet.name}}</h2>
-  <p><strong>Edad: </strong> {{pet.age}}</p>
-  <p><strong>Raza: </strong> {{pet.breed}}</p>
-  <p><strong>Color: </strong> {{pet.color}}</p>
-  <p><strong>Peso: </strong> {{pet.weight}}</p>
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+
+<div  *ngIf="dataPet" class="m-3">
+  <h2>Datos de {{dataPet.name}}</h2>
+  <p><strong>Edad: </strong> {{dataPet.age}}</p>
+  <p><strong>Raza: </strong> {{dataPet.breed}}</p>
+  <p><strong>Color: </strong> {{dataPet.color}}</p>
+  <p><strong>Peso: </strong> {{dataPet.weight}}</p>
 
   <div class="d-flex justify-content-end">
     <button class="btn btn-danger" (click)="closeModal()"> Cerrar</button>

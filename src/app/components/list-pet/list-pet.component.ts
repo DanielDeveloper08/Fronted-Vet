@@ -5,8 +5,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Pet } from 'src/app/interfaces/pet.interface';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DetailsPetComponent } from '../details-pet/details-pet.component';
-import { ToastrService } from 'ngx-toastr';
+import { ActiveToast, ToastrService } from 'ngx-toastr';
 import { PetService } from 'src/app/services/pet.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -43,18 +44,18 @@ export class ListPetComponent implements OnInit  {
     }
   }
 
-  openDetails(item: Pet){
+  /**
+   * Muestra el modal con los datos de la mascota
+   * @param item 
+   */
+  openDetails(idPet: number){
     this.dialog.open( DetailsPetComponent,{
-      data: item,
+      data: idPet,
       disableClose: true,
-      hasBackdrop: true,
       width: "400px",
     })
   }
 
-  deletePet(item: Pet){
-    this.toastr.success("Mascota eliminada exitosamente!","Mensaje",{progressAnimation:'decreasing',progressBar:true})
-  }
 
   /**
    * Llamada al servicio que retorna todas las mascotas
@@ -66,7 +67,7 @@ export class ListPetComponent implements OnInit  {
     this._petService.getPets().subscribe({
       next: (dataPets: Pet[]) => {
         this.isLoading = false;
-        this.dataSource.data = dataPets;
+        this.dataSource.data = dataPets.reverse();
         this.setPaginationOrder();
       },
       error: (error) => {
@@ -85,4 +86,12 @@ export class ListPetComponent implements OnInit  {
     this.paginator._intl.itemsPerPageLabel = "Items por página: "
   }
 
+  deletePet(pet: Pet){
+    this._petService
+          .deletePet(pet.id!)
+          .subscribe(msj=>{
+            this.toastr.success("Mascota eliminada con exito","Mensaje");
+            this.getPets();
+        })
+  }
 }
